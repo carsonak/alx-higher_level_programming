@@ -1,5 +1,5 @@
 #!/usr/bin/python3
 for num in range(99):
-    print(f"{num:0>2}", end=", ")
+    print("{:0>2}".format(num), end=", ")
 else:
-    print(f"{num + 1:0>2}")
+    print("{:0>2}".format(num + 1))
