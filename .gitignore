@@ -1,0 +1,5 @@
+#gitignore test files and pycache
+*main.py
+__pycache__
+*main.c
+linked_lists.c
