@@ -1,2 +1,3 @@
 #!/usr/bin/python3
-print("{}".format("abcdefghijklmnopqrstuvwxyz"), end="")
+for ltr in "abcdefghijklmnopqrstuvwxyz":
+    print("{}".format(ltr), end="")
