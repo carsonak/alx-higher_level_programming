@@ -1,13 +1,20 @@
 #!/usr/bin/python3
 def add_tuple(tuple_a=(), tuple_b=()):
-    if tuple_a[0] and tuple_b[0]:
-        sum = (tuple_a[0] + tuple_b[0])
-    else:
-        sum = (tuple_a[0] or tuple_b[0])
+    """"Add coresponding members of tuples, return results in a tuple"""
 
-    if tuple_a[1] and tuple_b[1]:
-        sum += (tuple_a[1] + tuple_b[1])
-    else:
-        sum += (tuple_a[1] or tuple_b[1])
+    len_a, len_b = len(tuple_a), len(tuple_b)
+    max_len = 2
+    sum = []
 
-    return sum
+    for i in range(max_len):
+        if i < len_a and i < len_b:
+            sum.append(tuple_a[i] + tuple_b[i])
+        else:
+            if i < len_a:
+                sum.append(tuple_a[i])
+            elif i < len_b:
+                sum.append(tuple_b[i])
+            else:
+                sum.append(0)
+
+    return (tuple(sum))
