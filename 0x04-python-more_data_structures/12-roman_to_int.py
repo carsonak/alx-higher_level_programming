@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 def roman_to_int(roman_string):
-    """"""
+    """Convert a Roman numeral in a string to a decimal"""
 
     rmn_s = roman_string
     s_ln = len(roman_string)
@@ -14,7 +14,7 @@ def roman_to_int(roman_string):
         "M": 1000
     }
 
-    if roman_string:
+    if roman_string and type(roman_string) is str:
         if s_ln > 1 and roman[rmn_s[1]] > roman[rmn_s[0]]:
             decimal = -roman[rmn_s[0]]
         else:
@@ -26,4 +26,4 @@ def roman_to_int(roman_string):
     else:
         return 0
 
-    return decimal
+    return int(decimal)
