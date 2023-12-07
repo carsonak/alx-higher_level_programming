@@ -13,4 +13,4 @@ def weight_average(my_list=[]):
                 total += block[0] * block[1]
                 itm_num += block[1]
 
-    return float(total/itm_num)
+    return float(total/itm_num if itm_num else 0)
