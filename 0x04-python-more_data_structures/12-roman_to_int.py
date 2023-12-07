@@ -13,13 +13,12 @@ def roman_to_int(roman_string):
         "M": 1000
     }
 
-    for ltr in roman_string.upper():
-        if not rom_nums.get(ltr):
-            return 0
-
     if roman_string and type(roman_string) is str:
-        prev_val = rom_nums[roman_string[0].upper()]
+        for ltr in roman_string.upper():
+            if not rom_nums.get(ltr):
+                return 0
 
+        prev_val = rom_nums[roman_string[0].upper()]
         for ltr in roman_string.upper():
             if rom_nums[ltr] > prev_val:
                 decimal += rom_nums[ltr] - (prev_val * 2)
