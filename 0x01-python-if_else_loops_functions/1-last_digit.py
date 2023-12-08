@@ -2,6 +2,7 @@
 import random
 number = random.randint(-10000, 10000)
 lst_dgt = (number % 10) if number >= 0 else -(abs(number) % 10)
+
 print(f"Last digit of {number:d} is ", end="")
 if lst_dgt > 5:
     print(f"{lst_dgt} and is greater than 5")
