@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-"""Print only integers"""
-
 from sys import stderr
+
 
 def safe_print_integer_err(value):
     """Print only integers"""
