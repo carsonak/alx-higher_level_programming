@@ -1,4 +1,5 @@
 #gitignore test files and pycache
+.vscode
 *main.py
 __pycache__
 *main.c
