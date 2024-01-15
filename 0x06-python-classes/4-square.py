@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Square"""
 
+
 class Square:
     """Square"""
 
@@ -22,6 +23,7 @@ class Square:
 
     def area(self):
         return self.__size ** 2
+
 
 if __name__ == "__main__":
 
