@@ -6,8 +6,8 @@ class Square:
     """Square"""
 
     def __init__(self, size=0, position=(0, 0)):
-        self.__size = size
-        self.__position = position
+        self.size = size
+        self.position = position
 
     @property
     def size(self):
@@ -32,7 +32,7 @@ class Square:
     def position(self, pos):
         """Set position, raise exception on invalid values"""
 
-        if type(pos) is not tuple or len(tuple) != 2:
+        if type(pos) is not tuple or len(pos) != 2:
             raise TypeError("position must be a tuple of 2 positive integers")
         elif type(pos[0]) is not int or type(pos[1]) is not int:
             raise TypeError("position must be a tuple of 2 positive integers")
@@ -48,7 +48,7 @@ class Square:
         """Print square with #'s and offset at position"""
 
         if self.__size:
-            print("\n" * self.position[1], end="")
+            print("\n" * self.__position[1], end="")
             for i in range(self.__size):
                 print(" " * self.__position[0] + "#" * self.__size)
         else:
