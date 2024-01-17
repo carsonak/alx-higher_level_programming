@@ -54,52 +54,20 @@ class Square:
         else:
             print()
 
+    def __str__(self):
+        shiftdown = "\n" * self.__position[1]
+        shiftright = " " * self.__position[0]
+        hashes = ("#" * self.__size) + "\n"
+        leSquare = shiftdown + ((shiftright + hashes) * self.__size)
+        return leSquare[:-1]
+
 
 if __name__ == "__main__":
-    my_square_1 = Square(3)
-    my_square_1.my_print()
 
-    print("\n<----->")
-    my_square_2 = Square(3, (1, 1))
-    my_square_2.my_print()
+    my_square = Square(5, (0, 0))
+    print(my_square)
 
-    print("\n<----->")
-    my_square_3 = Square(3, (3, 0))
-    my_square_3.my_print()
+    print("--")
 
-    print("\n<----->")
-    try:
-        my_square_4 = Square("Master", ("0", 3))
-        my_square_4.my_print()
-    except Exception as e:
-        print(e)
-
-    print("\n<----->")
-    try:
-        my_square_4 = Square(4, ("0", 3))
-        my_square_4.my_print()
-    except Exception as e:
-        print(e)
-
-    print("\n<----->")
-    try:
-        print(f"size = {my_square_1.size}")
-        print(f"position = {my_square_1.position}")
-        print(f"type = {type(my_square_1)}")
-        print(f"__dict__ = {my_square_1.__dict__}")
-    except Exception as e:
-        print(e)
-
-    print("\n<----->")
-    try:
-        print(f"__size = {my_square_1.__size}")
-    except Exception as e:
-        print(e)
-
-    print("\n<----->")
-    try:
-        print(f"__position = {my_square_1.__position}")
-    except Exception as e:
-        print(e)
-
-    print("\n<----->")
+    my_square = Square(5, (4, 1))
+    print(my_square)
