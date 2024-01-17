@@ -3,7 +3,19 @@
 
 
 def add_integer(a, b=98):
-    """Add two numbers and catche some exceptions"""
+    """
+    Return sum of two numbers and catch some exceptions
+
+    Arguments:
+        a (int/float): a compusolary number
+        b (int/float): an optional number, default is 98
+
+    Exceptions:
+        If a or b is not either a float or an int a TypeError will be raised
+
+    Returns:
+        int: The sum of a and b
+    """
 
     if type(a) is not int and type(a) is not float:
         raise TypeError("a must be an integer")

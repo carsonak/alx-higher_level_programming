@@ -1,8 +1,6 @@
 ========================
-``0-add_integer`` Module
+Tests for ``0-add_integer`` Module
 ========================
-
-A simple module with one function ``add_integer``
 
 Importing add_integer
 =====================

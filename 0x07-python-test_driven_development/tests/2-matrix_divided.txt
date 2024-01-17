@@ -1,0 +1,102 @@
+=================
+Tests for ``2-matrix_divided``
+=================
+
+Importing ``matrix_divided``
+============================
+
+>>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+
+Division of integers
+====================
+
+>>> matrix = [[1, 2, 3], [4, 5, 6]]
+>>> matrix_divided(matrix, 3)
+[[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
+
+>>> matrix = [[7, 8, 9]]
+>>> matrix_divided(matrix, 4)
+[[1.75, 2.0, 2.25]]
+
+>>> matrix = [[10, 11, 12], [12348, 8987664, 10000]]
+>>> matrix_divided(matrix, 5.5)
+[[1.82, 2.0, 2.18], [2245.09, 1634120.73, 1818.18]]
+
+>>> matrix = [[267, 11], [0.0, 0490.0], [64, 91]]
+>>> matrix_divided(matrix, int("0XAC", base=0))
+[[1.55, 0.06], [0.0, 2.85], [0.37, 0.53]]
+
+
+Division of Floats
+==================
+
+>>> matrix = [[10, 11, 120.777], [123.48, 898.7664, 100.00]]
+>>> matrix_divided(matrix, 9.5)
+[[1.05, 1.16, 12.71], [13.0, 94.61, 10.53]]
+
+>>> matrix = [[102399.000000000009, 33.333333333, 9.999999999999]]
+>>> matrix_divided(matrix, 7)
+[[14628.43, 4.76, 1.43]]
+
+>>> matrix = [[2, 1], [0.0, 0.0], [64, 91]]
+>>> matrix_divided(matrix, 5)
+[[0.4, 0.2], [0.0, 0.0], [12.8, 18.2]]
+
+>>> matrix = [[2, 1], [12, 8.0]]
+>>> matrix_divided(matrix, float("nan"))
+[[nan, nan], [nan, nan]]
+
+>>> matrix = [[2, 1], [12, 8.0]]
+>>> matrix_divided(matrix, float("inf"))
+[[0.0, 0.0], [0.0, 0.0]]
+
+Exceptions
+==========
+
+>>> matrix = [12, 8.0]
+>>> matrix_divided(matrix, 9.5)
+Traceback (most recent call last):
+    ...Traceback...
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+>>> matrix = [[2, 1], ["12", 8.0]]
+>>> matrix_divided(matrix, 9.5)
+Traceback (most recent call last):
+    ...Traceback...
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+>>> matrix = [[], [12, 8.0]]
+>>> matrix_divided(matrix, 9.5)
+Traceback (most recent call last):
+    ...Traceback...
+TypeError: Each row of the matrix must have the same size
+
+>>> matrix = [[2, 1], [12, 8.0]]
+>>> matrix_divided(matrix, 0)
+Traceback (most recent call last):
+    ...Traceback...
+ZeroDivisionError: division by zero
+
+>>> matrix = [[2, 1], [12, 8.0]]
+>>> matrix_divided(matrix, "7")
+Traceback (most recent call last):
+    ...Traceback...
+TypeError: div must be a number
+
+>>> matrix = [[2, 1], [0.0, 0.0], [64, 91]]
+>>> matrix_divided(matrix, float("AC"))
+Traceback (most recent call last):
+    ...Traceback...
+ValueError: could not convert string to float: 'AC'
+
+>>> matrix = [[267, 11], [0.0, 0490.0], [64, 91]]
+>>> matrix_divided(matrix, int("0XAC"))
+Traceback (most recent call last):
+    ...Traceback...
+ValueError: invalid literal for int() with base 10: '0XAC'
+
+>>> matrix = [[2, 1], [12, 8.0]]
+>>> matrix_divided(matrix)
+Traceback (most recent call last):
+    ...Traceback...
+TypeError: matrix_divided() missing 1 required positional argument: 'div'
