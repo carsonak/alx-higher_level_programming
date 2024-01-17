@@ -5,12 +5,12 @@
 A simple module with one function ``add_integer``
 
 Importing add_integer
---------------------
+=====================
 
 >>> add_integer = __import__('0-add_integer').add_integer
 
 Adding two integers
--------------------
+===================
 
 >>> add_integer(1, 2)
 3
@@ -24,7 +24,7 @@ Adding two integers
 -4
 
 Adding Floats
-----------
+==========
 
 Results should be same as when truncated to an integer
 
@@ -34,11 +34,11 @@ Results should be same as when truncated to an integer
 10
 >>> add_integer(-6.0)
 92
->>> add_integer(add_integer(12.99, 5))
-115
+>>> add_integer(add_integer(12.99, 5), float(add_integer(-6.0)))
+109
 
 Exceptions
-----------
+==========
 
 >>> add_integer(4, "School")
 Traceback (most recent call last):
@@ -59,3 +59,13 @@ TypeError: a must be an integer
 Traceback (most recent call last):
     ...Traceback...
 TypeError: add_integer() missing 1 required positional argument: 'a'
+
+>>> add_integer(12.99, float("five"))
+Traceback (most recent call last):
+    ...Traceback...
+ValueError: could not convert string to float: 'five'
+
+>>> add_integer(12.99, int("five"))
+Traceback (most recent call last):
+    ...Traceback...
+ValueError: invalid literal for int() with base 10: 'five'
