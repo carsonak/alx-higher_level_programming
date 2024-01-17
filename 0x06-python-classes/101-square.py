@@ -58,7 +58,10 @@ class Square:
         shiftdown = "\n" * self.__position[1]
         shiftright = " " * self.__position[0]
         hashes = ("#" * self.__size) + "\n"
-        leSquare = shiftdown + ((shiftright + hashes) * self.__size)
+        if self.__size:
+            leSquare = shiftdown + ((shiftright + hashes) * self.__size)
+        else:
+            return ""
         return leSquare[:-1]
 
 
@@ -70,4 +73,7 @@ if __name__ == "__main__":
     print("--")
 
     my_square = Square(5, (4, 1))
+    print(my_square)
+
+    my_square = Square(0, (10, 10))
     print(my_square)
