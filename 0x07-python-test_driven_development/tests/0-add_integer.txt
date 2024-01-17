@@ -69,3 +69,18 @@ ValueError: could not convert string to float: 'five'
 Traceback (most recent call last):
     ...Traceback...
 ValueError: invalid literal for int() with base 10: 'five'
+
+>>> add_integer(12.99, 0/0)
+Traceback (most recent call last):
+    ...Traceback...
+ZeroDivisionError: division by zero
+
+>>> add_integer(float("infinity"))
+Traceback (most recent call last):
+    ...Traceback...
+OverflowError: cannot convert float infinity to integer
+
+>>> add_integer(12.99, float("nan"))
+Traceback (most recent call last):
+    ...Traceback...
+ValueError: cannot convert float NaN to integer
