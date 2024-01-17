@@ -42,8 +42,8 @@ def matrix_divided(matrix, div):
 
         for col in matrix[i]:
             if type(col) is not int and type(col) is not float:
-                raise TypeError(
-                    "matrix must be a matrix (list of lists) of integers/floats")
+                raise TypeError("matrix must be a matrix (list of lists)" +
+                                " of integers/floats")
             else:
                 div_matrix[i].append(float(f"{col / div:.2f}"))
 
