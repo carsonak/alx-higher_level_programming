@@ -17,8 +17,8 @@ def text_indentation(text):
     fwd = 0
     bck = 0
     while fwd >= 0 and bck < len(text) - 1:
-        puncs = sorted([text.find(". ", fwd), text.find("? ", fwd),
-                        text.find(": ", fwd)])
+        puncs = sorted([text.find(".", fwd), text.find("?", fwd),
+                        text.find(":", fwd)])
         for p_i in puncs:
             if p_i >= 0:
                 fwd = p_i + 1
@@ -47,20 +47,4 @@ def text_indentation(text):
                 sn_txt = sn_txt[:bck] + " " + sn_txt[bck:].lstrip()
         bck = fwd
 
-    print(sn_txt[:-2], end="")
-
-
-if __name__ == "__main__":
-
-    text_indentation()
-    """
-    text_indentation(\"""Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
-    Quonam modo? Utrum igitur tibi litteram videor an totas paginas commovere? \
-    Non autem hoc: igitur ne illud quidem. Fortasse id optimum, sed ubi illud: \
-    Plus semper voluptatis? Teneo, inquit, finem illi videri nihil dolere. \
-    Transfer idem ad modestiam vel temperantiam, quae est moderatio cupiditatum \
-    rationi oboediens. Si id dicis, vicimus. Inde sermone vario sex illa a Dipylo \
-    stadia confecimus. Sin aliud quid voles, postea. Quae animi affectio suum \
-    cuique tribuens atque hanc, quam dico. Utinam quidem dicerent alium alio \
-    beatiorem! Iam ruinas videres\""")
-    """
+    print(sn_txt.rstrip(), end="")

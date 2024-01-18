@@ -96,9 +96,17 @@ Fortasse id optimum, sed ubi illud:
 Various Combinations
 --------------------
 >>> text_indentation("B.U.T. O.L.E.")
-B.U.T.
+B.
 <BLANKLINE>
-O.L.E.
+U.
+<BLANKLINE>
+T.
+<BLANKLINE>
+O.
+<BLANKLINE>
+L.
+<BLANKLINE>
+E.
 
 >>> text_indentation(". SUPRISE . MUTHAFU!!")
 .
@@ -107,38 +115,40 @@ SUPRISE .
 <BLANKLINE>
 MUTHAFU!!
 
->>> text_indentation(". ...     ::: ,,, ,::, , ??? : ")
+>>> text_indentation(".   :: ,,, ,::, , ??? : ")
 .
 <BLANKLINE>
-...
-<BLANKLINE>
-:::
-<BLANKLINE>
-,,, ,::, , ???
-<BLANKLINE>
-:
-
->>> text_indentation(": ...   __.__    ::: ,, ,??, , ??? ")
 :
 <BLANKLINE>
-...
+:
 <BLANKLINE>
-__.__ :::
+,,, ,:
 <BLANKLINE>
-,, ,??, , ???
-
->>> text_indentation("? ...   __?__    ::: ,, ... .? ... ")
+:
+<BLANKLINE>
+, , ?
+<BLANKLINE>
 ?
 <BLANKLINE>
-...
+?
 <BLANKLINE>
-__?__ :::
+:
+
+>>> text_indentation(":   __.__    :  ?   ")
+:
 <BLANKLINE>
-,, ...
+__.
 <BLANKLINE>
-.?
+__ :
 <BLANKLINE>
-...
+?
+
+>>> text_indentation("? AAAAA   __?__    .")
+?
+<BLANKLINE>
+AAAAA __?
+<BLANKLINE>
+__ .
 
 Exceptions
 ==========
