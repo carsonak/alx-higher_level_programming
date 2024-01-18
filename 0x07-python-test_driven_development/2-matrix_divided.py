@@ -10,11 +10,6 @@ def matrix_divided(matrix, div):
         matrix ([[]]): A list of lists of floats or ints
         div (int/float): The divisor
 
-    Exceptions:
-        If div is not an int or float a TypeError is raised
-        If div is equal to 0 (zero) a ZeroDivisionError is raised
-        If matrix is not a matrix of floats and/or ints a TypeError is raised
-
     Returns:
         A new matrix with all the items divided by div
     """

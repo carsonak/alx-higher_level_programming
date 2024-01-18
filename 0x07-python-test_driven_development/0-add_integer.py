@@ -10,9 +10,6 @@ def add_integer(a, b=98):
         a (int/float): a compusolary number
         b (int/float): an optional number, default is 98
 
-    Exceptions:
-        If a or b is not either a float or an int a TypeError will be raised
-
     Returns:
         int: The sum of a and b
     """
