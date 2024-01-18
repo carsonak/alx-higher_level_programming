@@ -47,7 +47,7 @@ def text_indentation(text):
                 sn_txt = sn_txt[:bck] + " " + sn_txt[bck:].lstrip()
         bck = fwd
 
-    print(sn_txt.removesuffix("\n\n"), end="")
+    print(sn_txt[:-2], end="")
 
 
 if __name__ == "__main__":
