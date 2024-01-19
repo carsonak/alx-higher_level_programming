@@ -60,6 +60,12 @@ Non autem hoc:
 <BLANKLINE>
 igitur ne illud quidem.
 
+No punctutions
+--------------
+
+>>> text_indentation("Hello Madafaka\n")
+Hello Madafaka
+
 Whitespaces
 -----------
 >>> text_indentation("""Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
@@ -108,12 +114,12 @@ L.
 <BLANKLINE>
 E.
 
->>> text_indentation(". SUPRISE . MUTHAFU!!")
+>>> text_indentation(". SUPRISE . SUPRISE!!")
 .
 <BLANKLINE>
 SUPRISE .
 <BLANKLINE>
-MUTHAFU!!
+SUPRISE!!
 
 >>> text_indentation(".   :: ,,, ,::, , ??? : ")
 .
