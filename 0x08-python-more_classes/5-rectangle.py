@@ -13,7 +13,7 @@ class Rectangle:
     Methods:
         __init__ : calls setters for width and height
         __str__ : return a string of hashes that represent the rectangle
-        __repr__ : return code that can recreate a Rectangle instance as a string
+        __repr__ : return a string that can recreate a Rectangle instance
         __del__ : Bye rectangle...
         area : return area of the rectangle
         perimeter : return perimeter of the rectangle
