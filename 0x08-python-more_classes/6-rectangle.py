@@ -78,7 +78,7 @@ class Rectangle:
         if self.area() > 0:
             hashes = ("#" * self.__width) + "\n"
             leRectangle = hashes * self.__height
-            return leRectangle
+            return leRectangle.rstrip()
         else:
             return ""
 

@@ -80,7 +80,7 @@ class Rectangle:
         if self.area() > 0:
             symbols = (str(self.print_symbol) * self.__width) + "\n"
             leRectangle = symbols * self.__height
-            return leRectangle
+            return leRectangle.rstrip()
         else:
             return ""
 
