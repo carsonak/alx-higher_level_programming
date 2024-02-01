@@ -1,0 +1,35 @@
+============================
+Tests for ``100-matrix_mul``
+============================
+
+Importing ``matrix_mul``
+========================
+
+>>> matrix_mul = __import__('100-matrix_mul').matrix_mul
+
+Matrices
+========
+
+Integers Matrices
+-----------------
+
+Floats Matrices
+---------------
+
+Mixed Matrices
+--------------
+
+More rows than cols
+-------------------
+
+More cols than rows
+-------------------
+
+One row and one column
+----------------------
+
+Identity Matrice
+----------------
+
+Exceptions
+==========
