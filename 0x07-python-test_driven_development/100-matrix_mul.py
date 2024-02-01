@@ -37,16 +37,15 @@ def matrix_mul(m_a, m_b):
                     raise TypeError(
                         "m_b should contain only integers or floats")
 
-                if cob < 1:
-                    if roa < 1 and len(m_b[rob]) != rlen_b:
-                        raise TypeError(
-                            "each row of m_b must be of the same size")
-                    elif roa < 1 and len(m_a[roa]) != rlen_a:
-                        raise TypeError(
-                            "each row of m_a must be of the same size")
-                    # No. of cols in m_a should be equal to No. of rows in m_b
-                    if len(m_a[roa]) != clen_b:
-                        raise ValueError("m_a and m_b can't be multiplied")
+                if len(m_b[rob]) != rlen_b:
+                    raise TypeError(
+                        "each row of m_b must be of the same size")
+                elif cob < 1 and len(m_a[roa]) != rlen_a:
+                    raise TypeError(
+                        "each row of m_a must be of the same size")
+                # No. of cols in m_a should be equal to No. of rows in m_b
+                if cob < 1 and len(m_a[roa]) != clen_b:
+                    raise ValueError("m_a and m_b can't be multiplied")
 
                 m_res[roa][cob] += m_a[roa][rob] * m_b[rob][cob]
 
@@ -54,16 +53,17 @@ def matrix_mul(m_a, m_b):
 
 
 if __name__ == "__main__":
-    print(matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]]))
+    """print(matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]]))
     print(matrix_mul([[1, 2]], [[3, 4], [5, 6]]))
     mat_a = [[2, 3, 4],
              [5, 6, 7],
              [8, 9, 10],
              [11, 12, 13],
-             [14, 15, 16]]
-    mat_b = [[2, 3, 4, 5, 6, 7],
-             [8, 9, 10, 11, 12, 13],
-             [14, 15, 16, 17, 18, 19]]
+             [14, 15, 16],
+             [17, 18, 19]]
+    mat_b = [[2, 3, 4, 5],
+             [6, 7, 8, 9],
+             [10, 11, 12, 13]]
     print(matrix_mul(mat_a, mat_b))
     mat_a = [[2, 3, 4, 5, 6, 7],
              [8, 9, 10, 11, 12, 13]]
@@ -80,4 +80,5 @@ if __name__ == "__main__":
     mat_b = [[8, 9, 10],
              [2, 3, 4],
              [5, 6.0, 7]]
-    print(matrix_mul(mat_a, mat_b))
+    print(matrix_mul(mat_a, mat_b))"""
+    print(matrix_mul())
