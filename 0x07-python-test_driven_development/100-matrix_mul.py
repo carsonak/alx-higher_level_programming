@@ -3,7 +3,7 @@
 
 
 def matrix_mul(m_a, m_b):
-    """"""
+    """Multiply two matrices, raise exceptions on invalid input"""
     if type(m_a) is not list:
         raise TypeError("m_a must be a list")
     elif type(m_b) is not list:
@@ -28,10 +28,12 @@ def matrix_mul(m_a, m_b):
         # Iterate through every column of m_b
         for cob in range(rlen_b):
             for rob in range(clen_b):
-                if type(m_a[roa][rob]) is not int and type(m_a[roa][rob]) is not float:
+                if type(m_a[roa][rob]) is not int and \
+                        type(m_a[roa][rob]) is not float:
                     raise TypeError(
                         "m_a should contain only integers or floats")
-                elif type(m_b[rob][cob]) is not int and type(m_b[rob][cob]) is not float:
+                elif type(m_b[rob][cob]) is not int and \
+                        type(m_b[rob][cob]) is not float:
                     raise TypeError(
                         "m_b should contain only integers or floats")
 
@@ -42,7 +44,7 @@ def matrix_mul(m_a, m_b):
                     elif roa < 1 and len(m_a[roa]) != rlen_a:
                         raise TypeError(
                             "each row of m_a must be of the same size")
-
+                    # No. of cols in m_a should be equal to No. of rows in m_b
                     if len(m_a[roa]) != clen_b:
                         raise ValueError("m_a and m_b can't be multiplied")
 
@@ -52,7 +54,7 @@ def matrix_mul(m_a, m_b):
 
 
 if __name__ == "__main__":
-    """print(matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]]))
+    print(matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]]))
     print(matrix_mul([[1, 2]], [[3, 4], [5, 6]]))
     mat_a = [[2, 3, 4],
              [5, 6, 7],
@@ -71,7 +73,7 @@ if __name__ == "__main__":
              [14, 15, 16, 17],
              [18, 19, 20, 21],
              [22, 23, 24, 25]]
-    print(matrix_mul(mat_a, mat_b))"""
+    print(matrix_mul(mat_a, mat_b))
     mat_a = [[1, 0, 0],
              [0, 1, 0],
              [0, 0, 1]]
