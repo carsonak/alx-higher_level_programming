@@ -84,7 +84,7 @@ One row and one column
 >>> mat_a = [[2], [3], [4]]
 >>> mat_b = [[2, 3, 4]]
 >>> matrix_mul(mat_a, mat_b)
-[[29]]
+[[4, 6, 8], [6, 9, 12], [8, 12, 16]]
 
 Identity Matrice
 ----------------
@@ -92,12 +92,12 @@ Identity Matrice
 >>> mat_a = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
 >>> mat_b = [[8, 9, 10], [2, 3, 4], [5, 6.0, 7]]
 >>> matrix_mul(mat_a, mat_b)
-[[8, 9, 10], [2, 3, 4], [5, 6.0, 7]]
+[[8, 9.0, 10], [2, 3.0, 4], [5, 6.0, 7]]
 
 >>> mat_a = [[8, 9, 10], [2, 3, 4], [5, 6.0, 7]]
 >>> mat_b = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
 >>> matrix_mul(mat_a, mat_b)
-[[8, 9, 10], [2, 3, 4], [5, 6.0, 7]]
+[[8, 9, 10], [2, 3, 4], [5.0, 6.0, 7.0]]
 
 Exceptions
 ==========
@@ -200,7 +200,7 @@ Traceback (most recent call last):
 ValueError: m_a and m_b can't be multiplied
 
 >>> mat_a = [[5, 6, 7], [8, 9, 10], [2, 3, 4]]
->>> mat_b = [[2, 3], [4, 5], [5, 6]]
+>>> mat_b = [[2, 3], [4, 5], [5, 6], [7, 8]]
 >>> matrix_mul(mat_a, mat_b)
 Traceback (most recent call last):
     ...Traceback...
@@ -222,8 +222,38 @@ TypeError: matrix_mul() missing 1 required positional argument: 'm_b'
 Mix of Exceptions
 -----------------
 
->>> mat_a = [[5, 6, 7], [8, 9, 10], [2, 3, 4]]
+>>> mat_a = [5, 6, 7]
+>>> mat_b = [[]]
+>>> matrix_mul(None, mat_b)
+Traceback (most recent call last):
+    ...Traceback...
+TypeError: m_a must be a list
+
+>>> matrix_mul(mat_a, mat_b)
+Traceback (most recent call last):
+    ...Traceback...
+TypeError: m_a must be a list of lists
+
+>>> mat_a = [["5", 7], ["8, 9, 10"], [2, 3, 4]]
+>>> matrix_mul(mat_a, mat_b)
+Traceback (most recent call last):
+    ...Traceback...
+ValueError: m_b can't be empty
+
 >>> mat_b = [[2, 3], [4, 5], [5, 6]]
 >>> matrix_mul(mat_a, mat_b)
 Traceback (most recent call last):
     ...Traceback...
+TypeError: m_a should contain only integers or floats
+
+>>> mat_a = [[5, 6, 7], [8, 9], [2, 3, 4]]
+>>> matrix_mul(mat_a, mat_b)
+Traceback (most recent call last):
+    ...Traceback...
+TypeError: each row of m_a must be of the same size
+
+>>> mat_a = [[5, 6], [8, 9, 10], [2, 3, 4]]
+>>> matrix_mul(mat_a, mat_b)
+Traceback (most recent call last):
+    ...Traceback...
+ValueError: m_a and m_b can't be multiplied

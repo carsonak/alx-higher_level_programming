@@ -81,4 +81,6 @@ if __name__ == "__main__":
              [2, 3, 4],
              [5, 6.0, 7]]
     print(matrix_mul(mat_a, mat_b))"""
-    print(matrix_mul())
+    mat_a = [[5, 6, 7], [8, 9], [2, 3, 4]]
+    mat_b = [[2, 3], [4, 5], [5, 6]]
+    print(matrix_mul(mat_a, mat_b))
