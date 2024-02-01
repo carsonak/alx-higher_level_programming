@@ -53,7 +53,7 @@ def matrix_mul(m_a, m_b):
 
 
 if __name__ == "__main__":
-    """print(matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]]))
+    print(matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]]))
     print(matrix_mul([[1, 2]], [[3, 4], [5, 6]]))
     mat_a = [[2, 3, 4],
              [5, 6, 7],
@@ -80,7 +80,4 @@ if __name__ == "__main__":
     mat_b = [[8, 9, 10],
              [2, 3, 4],
              [5, 6.0, 7]]
-    print(matrix_mul(mat_a, mat_b))"""
-    mat_a = [[5, 6, 7], [8, 9], [2, 3, 4]]
-    mat_b = [[2, 3], [4, 5], [5, 6]]
     print(matrix_mul(mat_a, mat_b))
