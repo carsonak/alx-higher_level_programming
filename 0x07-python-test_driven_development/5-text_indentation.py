@@ -13,7 +13,7 @@ def text_indentation(text):
     if type(text) is not str:
         raise TypeError("text must be a string")
 
-    sn_txt = ""
+    sen_txt = ""
     fwd = 0
     bck = 0
     while fwd >= 0 and bck < len(text) - 1:
@@ -26,16 +26,18 @@ def text_indentation(text):
         else:
             fwd = p_i
         if fwd < 0:
-            sn_txt = sn_txt + text[bck:].lstrip() + "\n\n"
+            sen_txt = sen_txt + text[bck:].lstrip() + "\n\n"
         else:
-            sn_txt = sn_txt + text[bck:fwd].lstrip() + "\n\n"
+            sen_txt = sen_txt + text[bck:fwd].lstrip() + "\n\n"
 
         # Dealing with embedded whitespaces
         bck = 0
         while bck >= 0:
-            wht_spc = sorted([sn_txt.find("  ", bck), sn_txt.find("\t", bck),
-                              sn_txt.find("\n ", bck), sn_txt.find("\f", bck),
-                              sn_txt.find("\r", bck)])
+            wht_spc = sorted(
+                [sen_txt.find("  ", bck), sen_txt.find("\t", bck),
+                 sen_txt.find("\n ", bck), sen_txt.find("\f", bck),
+                 sen_txt.find("\r", bck)]
+            )
             for w_i in wht_spc:
                 if w_i >= 0:
                     bck = w_i
@@ -44,7 +46,7 @@ def text_indentation(text):
                 bck = w_i
 
             if bck > 0:
-                sn_txt = sn_txt[:bck] + " " + sn_txt[bck:].lstrip()
+                sen_txt = sen_txt[:bck] + " " + sen_txt[bck:].lstrip()
         bck = fwd
 
-    print(sn_txt.rstrip(), end="")
+    print(sen_txt.rstrip(), end="")
