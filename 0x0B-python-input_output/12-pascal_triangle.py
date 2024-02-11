@@ -5,21 +5,19 @@
 def pascal_triangle(n):
     """Return a list of lists representing Pascal's triangle of order n"""
 
-    if n <= 0:
-        return [[]]
-
     pal = []
-    for g in range(n):
-        row = []
-        if g > 0:
-            for h in range(len(pal[g - 1])):
-                if h > 0:
-                    row.append(pal[g-1][h-1] + pal[g-1][h])
-                else:
-                    row.append(1)
+    if n > 0:
+        for g in range(n):
+            row = []
+            if g > 0:
+                for h in range(len(pal[g - 1])):
+                    if h > 0:
+                        row.append(pal[g-1][h-1] + pal[g-1][h])
+                    else:
+                        row.append(1)
 
-        row.append(1)
-        pal.append(row)
+            row.append(1)
+            pal.append(row)
 
     return pal
 

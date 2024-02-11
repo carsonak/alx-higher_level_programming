@@ -11,7 +11,7 @@ def read_file(filename=""):
     """
 
     with open(filename, encoding="utf-8") as afile:
-        print(afile.read())
+        print(afile.read(), end="")
 
 
 if __name__ == "__main__":
