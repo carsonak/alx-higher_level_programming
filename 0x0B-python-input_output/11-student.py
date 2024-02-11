@@ -14,6 +14,7 @@ class Student():
     Methods:
         __init__: initialises some attributes
         to_json: returns a dict of instance attributes
+        reload_from_json: updates an instance with dict
     """
 
     def __init__(self, first_name, last_name, age):
@@ -30,19 +31,25 @@ class Student():
         self.last_name = last_name
         self.age = age
 
-    def to_json(self):
+    def to_json(self, attrs=None):
         """Return a dict of instance attributes"""
 
-        return self.__dict__
+        obj_d = self.__dict__
+        filt = dict()
+        if type(attrs) is list:
+            for k in obj_d:
+                if k in attrs:
+                    filt.update([(k, obj_d.get(k))])
+        else:
+            filt = obj_d
+
+        return filt
+
+    def reload_from_json(self, json):
+        """Update an instance with dict"""
+
+        self.__dict__.update(json)
 
 
 if __name__ == "__main__":
-    students = [Student("John", "Doe", 23), Student("Bob", "Dylan", 27)]
-
-    for student in students:
-        j_student = student.to_json()
-        print(type(j_student))
-        print(j_student['first_name'])
-        print(type(j_student['first_name']))
-        print(j_student['age'])
-        print(type(j_student['age']))
+    pass
