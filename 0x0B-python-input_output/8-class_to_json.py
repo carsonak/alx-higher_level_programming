@@ -26,7 +26,7 @@ if __name__ == "__main__":
             self.score -= 1
 
         def __str__(self):
-            return "[MyClass] {} - {:d} => {:d}".format(self.__name, self.number, self.score)
+            return f"[MyClass]{self.__name}-{self.number:d}=>{self.score:d}"
 
     m = MyClass("John")
     m.win()
