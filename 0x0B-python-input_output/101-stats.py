@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 """
 Module for logger
+
+Functions:
+    logger: parse input to data
 """
 
 
@@ -35,7 +38,15 @@ def logger():
 
 
 def get_codes(stats: dict[str, int]):
-    """Return a string of keys in a dict whose values are greater than 0"""
+    """
+    Return a string of keys in a dict whose values are greater than 0
+
+    Args:
+        stats (dict): a dict with the codes and the number of repetitions
+
+    Return:
+        A string with info about the codes in the dict
+    """
 
     output = ""
     for k, v in stats.items():
