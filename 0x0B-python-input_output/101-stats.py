@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""Module for logger"""
+"""
+Module for logger
+"""
 
 
 def logger():
