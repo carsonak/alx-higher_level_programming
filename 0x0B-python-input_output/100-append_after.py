@@ -2,8 +2,18 @@
 """Module for append_after"""
 
 
-def insert_strings(dest, src, pos):
-    """"""
+def insert_strings(dest: str, src, pos: int | str = -1):
+    """
+    Inserts an object string representation in a string at the specified pos
+
+    Args:
+        dest (str): string to affix object in
+        src (any): an object which can be represented as a string
+        pos (int | str): index to affix after or string to affix after
+
+    Return:
+        The resultant string
+    """
 
     nw_str = ""
     if type(dest) is not str:
@@ -30,15 +40,21 @@ def insert_strings(dest, src, pos):
     return nw_str
 
 
-def append_after(filename="", search_string="", new_string=""):
-    """"""
+def append_after(filename="", search_string: str = "", new_string: str = ""):
+    """
+    Search for a given string in a file and append a given string after it
+
+    Args:
+        filename (str): Path of the file
+        search_string (str): string to search for
+        new_string (str): string to insert in file
+    """
 
     with open(filename, "r+", encoding="utf-8") as afile:
-        p = afile.read()
-        afile.seek(0, 0)
-        afile.write(insert_strings(p, new_string, search_string))
+        text = afile.read()
+        afile.seek(0, 0)  # Setting cursor to 0 so as to overwrite the file
+        afile.write(insert_strings(text, new_string, search_string))
 
 
 if __name__ == "__main__":
-    append_after("/home/line/Github_Repositories/alx-higher_level_programming/0x0B-python-input_output/append_after_100.txt",
-                 "Python", "\"C is fun!\"\n")
+    append_after("./append_after_100.txt", "Python", "\"C is fun!\"\n")

@@ -1,10 +1,16 @@
 #!/usr/bin/python3
-""""""
-import sys
+"""Module for logger"""
 
 
 def logger():
-    """"""
+    """
+    Read lines from stdin and parse into statistics
+
+    This function reads log lines from the standard input and extracts file
+    size and status code information. It prints the cumlative size and how
+    many times a particaular status code ahas been invoked every ten lines
+    read or after keyboard interrupt.
+    """
 
     try:
         ln_cnt = 0
@@ -27,9 +33,11 @@ def logger():
 
 
 def get_codes(stats: dict[str, int]):
+    """Return a string of keys in a dict whose values are greater than 0"""
+
     output = ""
     for k, v in stats.items():
-        if v:
+        if v > 0:
             output += f"{k}: {v}\n"
 
     return output
