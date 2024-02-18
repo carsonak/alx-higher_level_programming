@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Module for genrator"""
 import random
 import sys
 from time import sleep
