@@ -1,11 +1,24 @@
 #!/usr/bin/python3
-"""Module for function pascal_triangle"""
+"""
+Module for function pascal_triangle
+
+Functions:
+    pascal_triangle: returns a list represnting pascal's triangle
+"""
 
 
-def pascal_triangle(n):
-    """Return a list of lists representing Pascal's triangle of order n"""
+def pascal_triangle(n: int):
+    """
+    Return a list of lists representing Pascal's triangle of order n
 
-    pal = []
+    Args:
+        n (int): order of the triangle
+
+    Return:
+        A list representing Pascal's triangle of order n
+    """
+
+    pal: list[list[int]] = []
     if n > 0:
         for g in range(n):
             row = []

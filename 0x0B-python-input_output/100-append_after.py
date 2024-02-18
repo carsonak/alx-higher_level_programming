@@ -1,10 +1,16 @@
 #!/usr/bin/python3
-"""Module for append_after"""
+"""
+Module for append_after
+
+Functions:
+    insert_strings: inserts objects as strings into text
+    append_after: inserts a string after particular string within a line
+"""
 
 
 def insert_strings(dest: str, src, pos: int | str = -1):
     """
-    Inserts an object string representation in a string at the specified pos
+    Insert an object string representation in a string at the specified pos
 
     Args:
         dest (str): string to affix object in
