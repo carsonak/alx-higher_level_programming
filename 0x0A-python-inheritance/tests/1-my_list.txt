@@ -1,0 +1,93 @@
+============================
+Tests for "1-my_list" Module
+============================
+
+Importing "MyList"
+==================
+
+>>> MyList = __import__("1-my_list").MyList
+
+Sorting Tests
+=============
+
+Unsorted List
+-------------
+
+>>> l = MyList([5, 2, 1, 3, 5])
+>>> print(l)
+[5, 2, 1, 3, 5]
+>>> l.print_sorted()
+[1, 2, 3, 5, 5]
+>>> print(l)
+[5, 2, 1, 3, 5]
+
+Sorted List
+-----------
+
+>>> l = MyList([1, 2, 3, 4, 5])
+>>> print(l)
+[1, 2, 3, 4, 5]
+>>> l.print_sorted()
+[1, 2, 3, 4, 5]
+
+All same
+--------
+
+>>> l = MyList([5, 5, 5, 5, 5])
+>>> print(l)
+[5, 5, 5, 5, 5]
+>>> l.print_sorted()
+[5, 5, 5, 5, 5]
+
+One item
+--------
+
+>>> l = MyList([78])
+>>> l.print_sorted()
+[78]
+>>> print(l)
+[78]
+
+Two items
+---------
+
+>>> l = MyList([978, 41])
+>>> l.print_sorted()
+[41, 978]
+>>> print(l)
+[978, 41]
+
+-ve numbers
+-----------
+
+>>> l = MyList([-0, -22, 6, -7, 22])
+>>> l.print_sorted()
+[-22, -7, 0, 6, 22]
+>>> print(l)
+[0, -22, 6, -7, 22]
+
+All -ve numbers
+---------------
+
+>>> l = MyList([-10, -22, -6, -7, -22])
+>>> l.print_sorted()
+[-22, -22, -10, -7, -6]
+>>> print(l)
+[-10, -22, -6, -7, -22]
+
+Empty
+-----
+
+>>> l = MyList([])
+>>> l.print_sorted()
+[]
+>>> print(l)
+[]
+
+Exceptions
+==========
+
+>>> l = MyList(None)
+Traceback (most recent call last):
+    ...Traceback...
+TypeError: 'NoneType' object is not iterable
