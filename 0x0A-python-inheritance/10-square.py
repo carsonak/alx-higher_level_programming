@@ -9,6 +9,7 @@ class Square(Rectangle):
     def __init__(self, size):
         """Initialises a square instance by calling parent class initialiser"""
 
+        self.integer_validator("size", size)
         super().__init__(size, size)
 
 
@@ -17,3 +18,7 @@ if __name__ == "__main__":
 
     print(s)
     print(s.area())
+    try:
+        s = Square("44")
+    except Exception as e:
+        print("[{}] {}".format(e.__class__.__name__, e))
