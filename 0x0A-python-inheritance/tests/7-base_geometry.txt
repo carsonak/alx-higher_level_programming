@@ -24,6 +24,26 @@ Traceback (most recent call last):
     ...Traceback...
 TypeError: val must be an integer
 
+>>> bg.integer_validator("val", 4.5)
+Traceback (most recent call last):
+    ...Traceback...
+TypeError: val must be an integer
+
+>>> bg.integer_validator("val", [7])
+Traceback (most recent call last):
+    ...Traceback...
+TypeError: val must be an integer
+
+>>> bg.integer_validator("val", True)
+Traceback (most recent call last):
+    ...Traceback...
+TypeError: val must be an integer
+
+>>> bg.integer_validator("val", "49")
+Traceback (most recent call last):
+    ...Traceback...
+TypeError: val must be an integer
+
 >>> bg.integer_validator("int", 0)
 Traceback (most recent call last):
     ...Traceback...
@@ -33,3 +53,18 @@ ValueError: int must be greater than 0
 Traceback (most recent call last):
     ...Traceback...
 ValueError: length must be greater than 0
+
+>>> bg.area()
+Traceback (most recent call last):
+    ...Traceback...
+Exception: area() is not implemented
+
+>>> bg.integer_validator("int")
+Traceback (most recent call last):
+    ...Traceback...
+TypeError: BaseGeometry.integer_validator() missing 1 required positional argument: 'value'
+
+>>> bg.integer_validator()
+Traceback (most recent call last):
+    ...Traceback...
+TypeError: BaseGeometry.integer_validator() missing 2 required positional arguments: 'name' and 'value'
