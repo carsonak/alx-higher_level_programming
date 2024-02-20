@@ -1,0 +1,35 @@
+============================
+Tests for BaseGeometry class
+============================
+
+Importing BaseGeometry
+======================
+
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+Correct values
+==============
+
+>>> bg = BaseGeometry()
+
+>>> bg.integer_validator("my_int", int("12"))
+
+>>> bg.integer_validator("width", 89**998172)
+
+Exceptions
+==========
+
+>>> bg.integer_validator("val", float("Nan"))
+Traceback (most recent call last):
+    ...Traceback...
+TypeError: val must be an integer
+
+>>> bg.integer_validator("int", 0)
+Traceback (most recent call last):
+    ...Traceback...
+ValueError: int must be greater than 0
+
+>>> bg.integer_validator("length", -25)
+Traceback (most recent call last):
+    ...Traceback...
+ValueError: length must be greater than 0
