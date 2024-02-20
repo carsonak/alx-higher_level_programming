@@ -84,6 +84,19 @@ Empty
 >>> print(l)
 []
 
+Appending
+---------
+
+>>> l.append(8)
+>>> l.append(256)
+>>> l.append(4)
+>>> l.append(1024)
+>>> l.append(64)
+>>> l.print_sorted()
+[4, 8, 64, 256, 1024]
+>>> print(l)
+[8, 256, 4, 1024, 64]
+
 Exceptions
 ==========
 
