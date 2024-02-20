@@ -9,6 +9,7 @@ class Square(Rectangle):
     def __init__(self, size):
         """Initialises a square instance by calling parent class initialiser"""
 
+        self.integer_validator("size", size)
         super().__init__(size, size)
 
     def __str__(self):
