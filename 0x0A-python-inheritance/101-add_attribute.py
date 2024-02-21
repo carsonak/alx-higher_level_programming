@@ -9,3 +9,9 @@ def add_attribute(obj, attr_name, attr_val):
         obj.__dict__[str(attr_name)] = attr_val
     else:
         raise TypeError("can't add new attribute")
+
+
+"""
+New attributes can also be added to objects if they instead have the __slots__
+attribute defined.
+"""
