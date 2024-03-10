@@ -12,8 +12,7 @@ class RectangleTest(TestCase):
     """Tests for Rectangle class."""
 
     def setUp(self):
-        """Setup some rectangle instances."""
-
+        """Initialise rectangle instances."""
         self.r1 = Rectangle(3, 5)
         self.r2 = Rectangle(4, 6, 4, 2)
         self.r7800 = Rectangle(7, 8, id=7800)
@@ -21,12 +20,10 @@ class RectangleTest(TestCase):
 
     def tearDown(self):
         """Reset public class attribute."""
-
         setattr(Base, "_Base__nb_objects", 0)
 
     def test_rectangle_intiialsation(self):
         """Testing instance attributes have initialised properly."""
-
         self.assertEqual((self.r1.width, self.r1.height, self.r1.x, self.r1.y,
                           self.r1.id), (3, 5, 0, 0, 1), "Assert r1 attrs")
         self.assertEqual((self.r2.width, self.r2.height, self.r2.x, self.r2.y,
@@ -39,30 +36,26 @@ class RectangleTest(TestCase):
 
     def test_rectangle_area(self):
         """Testing the area() method."""
-
         self.assertEqual(self.r1.area(), (3 * 5), "Assert r1 area")
         self.assertEqual(self.r3.area(), (2 * 2), "Assert r3 area")
 
     def test_rectangle_to_dictionary(self):
         """Testing the to_dictionary() method."""
-
         self.assertEqual(self.r3.to_dictionary(),
                          {'x': 7, 'y': 0, 'id': 3, 'height': 2, 'width': 2})
 
     def test_rectangle_str(self):
         """Testing the __str__() magic method."""
-
         self.assertEqual(str(self.r1), "[Rectangle] (1) 0/0 - 3/5")
         self.assertEqual(str(self.r2), "[Rectangle] (2) 4/2 - 4/6")
         self.assertEqual(str(self.r7800), "[Rectangle] (7800) 0/0 - 7/8")
         with mock.patch('sys.stdout', new=StringIO()) as mock_stdout:
             print(self.r3)
             self.assertEqual(mock_stdout.getvalue(),
-                             f"[Rectangle] (3) 7/0 - 2/2\n")
+                             "[Rectangle] (3) 7/0 - 2/2\n")
 
     def test_rectangle_display(self):
         """Testing the display() method."""
-
         with mock.patch('sys.stdout', new=StringIO()) as mock_stdout:
             excepted_out: str = "###\n" * 5
             self.r1.display()
@@ -80,32 +73,37 @@ class RectangleTest(TestCase):
 
     def test_rectangle_update(self):
         """Testing the update() method."""
-
         self.r1.update(99, 99, 99, 99, 99, 99, 99, 99, 99)
         self.assertEqual((self.r1.id, self.r1.width, self.r1.height,
-                         self.r1.x, self.r1.y), (99, 99, 99, 99, 99), "Assert r1 attrs")
+                         self.r1.x, self.r1.y), (99, 99, 99, 99, 99),
+                         "Assert r1")
         self.r1.update(1, 2)
         self.assertEqual((self.r1.id, self.r1.width, self.r1.height,
-                         self.r1.x, self.r1.y), (1, 2, 99, 99, 99), "Assert r1 attrs")
+                         self.r1.x, self.r1.y), (1, 2, 99, 99, 99),
+                         "Assert r1")
         self.r1.update(3, 4, 5, 6, 7)
         self.assertEqual((self.r1.id, self.r1.width, self.r1.height,
-                         self.r1.x, self.r1.y), (3, 4, 5, 6, 7), "Assert r1 attrs")
+                         self.r1.x, self.r1.y), (3, 4, 5, 6, 7),
+                         "Assert r1")
         self.r1.update(width=8, id=123, meno=45)
         self.assertEqual((self.r1.id, self.r1.width, self.r1.height,
-                         self.r1.x, self.r1.y), (123, 8, 5, 6, 7), "Assert r1 attrs")
+                         self.r1.x, self.r1.y), (123, 8, 5, 6, 7),
+                         "Assert r1")
         self.r1.update(width=9, id=8, height=10, y=12, x=11)
         self.assertEqual((self.r1.id, self.r1.width, self.r1.height,
-                         self.r1.x, self.r1.y), (8, 9, 10, 11, 12), "Assert r1 attrs")
+                         self.r1.x, self.r1.y), (8, 9, 10, 11, 12),
+                         "Assert r1")
         self.r1.update(1, 2, height=3, x=4)
         self.assertEqual((self.r1.id, self.r1.width, self.r1.height,
-                         self.r1.x, self.r1.y), (1, 2, 10, 11, 12), "Assert r1 attrs")
+                         self.r1.x, self.r1.y), (1, 2, 10, 11, 12),
+                         "Assert r1")
         self.r1.update(1, 2, 3, 4, 5, {"id": 77, "x": 3})
         self.assertEqual((self.r1.id, self.r1.width, self.r1.height,
-                         self.r1.x, self.r1.y), (1, 2, 3, 4, 5), "Assert r1 attrs")
+                         self.r1.x, self.r1.y), (1, 2, 3, 4, 5),
+                         "Assert r1")
 
     def test_rectangle_update_exceptions(self):
         """Testing the update() method exceptions."""
-
         with self.assertRaises(TypeError, msg="Wrong id type"):
             self.r1.update([1, 2, 3])
 
@@ -132,7 +130,6 @@ class RectangleTest(TestCase):
 
     def test_rectangle_intialisation_exceptions(self):
         """Testing initialisation exceptions."""
-
         with self.assertRaises(TypeError, msg="No width and height"):
             r1 = Rectangle()
 
@@ -145,7 +142,7 @@ class RectangleTest(TestCase):
         with self.assertRaises(TypeError, msg="Wrong height type"):
             r1 = Rectangle(1, (2, 2))
 
-        with self.assertRaises(ValueError, msg="Width and height values less than 1"):
+        with self.assertRaises(ValueError, msg="Width and height < 1"):
             r1 = Rectangle(0, -4)
 
         with self.assertRaises(ValueError, msg="Height value less than 1"):

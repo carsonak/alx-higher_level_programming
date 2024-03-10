@@ -7,24 +7,26 @@ class Square(Rectangle):
     """Square class."""
 
     def __init__(self, size, x=0, y=0, id=None):
+        """Initialise size, x, y, id."""
         super().__init__(size, size, x, y, id)
 
     def __str__(self):
-        """Return details of a Square instance"""
+        """Return details of a Square instance."""
         return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
 
     @property
     def size(self):
+        """Return size."""
         return self.width
 
     @size.setter
-    def size(self, sz: int):
+    def size(self, sz):
+        """Check and set size."""
         self.width = sz
         self.height = sz
 
     def update(self, *args, **kwargs):
-        """Updates attributes of an instance with values from a tuple"""
-
+        """Update attributes of an instance with values from a tuple."""
         attributes = ("id", "size", "x", "y")
         if args and len(args):
             for idx, val in enumerate(args):
@@ -38,7 +40,7 @@ class Square(Rectangle):
                 setattr(self, attr, new_val)
 
     def to_dictionary(self):
-        """Return the dictionary representation of a Rectangle instance"""
+        """Return the dictionary representation of a Rectangle instance."""
         inst_dict = dict()
         for attribute in ("id", "size", "x", "y"):
             inst_dict[attribute] = getattr(self, attribute)
