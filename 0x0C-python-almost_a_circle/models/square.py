@@ -9,12 +9,12 @@ class Square(Rectangle):
     def __init__(self, size, x=0, y=0, id=None):
         super().__init__(size, size, x, y, id)
 
-    def __str__(self) -> str:
+    def __str__(self):
         """Return details of a Square instance"""
         return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
 
     @property
-    def size(self) -> int:
+    def size(self):
         return self.width
 
     @size.setter
@@ -37,7 +37,7 @@ class Square(Rectangle):
                 new_val = kwargs.get(attr, getattr(self, attr))
                 setattr(self, attr, new_val)
 
-    def to_dictionary(self) -> dict[str, int]:
+    def to_dictionary(self):
         """Return the dictionary representation of a Rectangle instance"""
         inst_dict = dict()
         for attribute in ("id", "size", "x", "y"):

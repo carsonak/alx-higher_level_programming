@@ -11,7 +11,7 @@ from unittest import mock
 class RectangleTest(TestCase):
     """Tests for Rectangle class."""
 
-    def setUp(self) -> None:
+    def setUp(self):
         """Setup some rectangle instances."""
 
         self.r1 = Rectangle(3, 5)
@@ -19,7 +19,9 @@ class RectangleTest(TestCase):
         self.r7800 = Rectangle(7, 8, id=7800)
         self.r3 = Rectangle(2, 2, 7)
 
-    def tearDown(self) -> None:
+    def tearDown(self):
+        """Reset public class attribute."""
+
         setattr(Base, "_Base__nb_objects", 0)
 
     def test_rectangle_intiialsation(self):
@@ -58,7 +60,7 @@ class RectangleTest(TestCase):
             self.assertEqual(mock_stdout.getvalue(),
                              f"[Rectangle] (3) 7/0 - 2/2\n")
 
-    def test_rectangle_display(self) -> None:
+    def test_rectangle_display(self):
         """Testing the display() method."""
 
         with mock.patch('sys.stdout', new=StringIO()) as mock_stdout:
@@ -76,7 +78,7 @@ class RectangleTest(TestCase):
             self.r3.display()
             self.assertEqual(mock_stdout.getvalue(), excepted_out)
 
-    def test_rectangle_update(self) -> None:
+    def test_rectangle_update(self):
         """Testing the update() method."""
 
         self.r1.update(99, 99, 99, 99, 99, 99, 99, 99, 99)
@@ -101,7 +103,7 @@ class RectangleTest(TestCase):
         self.assertEqual((self.r1.id, self.r1.width, self.r1.height,
                          self.r1.x, self.r1.y), (1, 2, 3, 4, 5), "Assert r1 attrs")
 
-    def test_rectangle_update_exceptions(self) -> None:
+    def test_rectangle_update_exceptions(self):
         """Testing the update() method exceptions."""
 
         with self.assertRaises(TypeError, msg="Wrong id type"):

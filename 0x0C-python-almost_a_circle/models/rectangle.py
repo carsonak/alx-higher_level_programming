@@ -6,7 +6,7 @@ from models.base import Base
 class Rectangle(Base):
     """Rectangle class."""
 
-    def __init__(self, width: int, height: int, x=0, y=0, id=None):
+    def __init__(self, width, height, x=0, y=0, id=None):
         super().__init__(id)
         self.width = width
         self.height = height
@@ -14,7 +14,7 @@ class Rectangle(Base):
         self.y = y
 
     @property
-    def width(self) -> int:
+    def width(self):
         return self.__width
 
     @width.setter
@@ -28,7 +28,7 @@ class Rectangle(Base):
         self.__width = width
 
     @property
-    def height(self) -> int:
+    def height(self):
         return self.__height
 
     @height.setter
@@ -42,7 +42,7 @@ class Rectangle(Base):
         self.__height = height
 
     @property
-    def x(self) -> int:
+    def x(self):
         return self.__x
 
     @x.setter
@@ -56,7 +56,7 @@ class Rectangle(Base):
         self.__x = x
 
     @property
-    def y(self) -> int:
+    def y(self):
         return self.__y
 
     @y.setter
@@ -69,7 +69,7 @@ class Rectangle(Base):
 
         self.__y = y
 
-    def area(self) -> int:
+    def area(self):
         """Return area of rectangle."""
         return self.width * self.height
 
@@ -81,7 +81,7 @@ class Rectangle(Base):
         full_rec = y_offset + (row * self.height)
         print(full_rec.rstrip())
 
-    def __str__(self) -> str:
+    def __str__(self):
         """Return details of rectangle instance."""
         return f"[Rectangle] ({self.id}) {self.x}/{self.y} - {self.width}/{self.height}"
 
@@ -100,7 +100,7 @@ class Rectangle(Base):
                 new_val = kwargs.get(attr, getattr(self, attr))
                 setattr(self, attr, new_val)
 
-    def to_dictionary(self) -> dict[str, int]:
+    def to_dictionary(self):
         """Return the dictionary representation of a Rectangle instance."""
         inst_dict = dict()
         for attribute in ("x", "y", "id", "height", "width"):
