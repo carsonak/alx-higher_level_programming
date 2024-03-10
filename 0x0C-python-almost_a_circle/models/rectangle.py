@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Module for rectangle."""
-from base import Base
+from models.base import Base
 
 
 class Rectangle(Base):
@@ -70,21 +70,23 @@ class Rectangle(Base):
         self.__y = y
 
     def area(self) -> int:
-        """Return area of rectangle"""
+        """Return area of rectangle."""
         return self.width * self.height
 
     def display(self):
-        """Print a visual representation of a rectangle"""
-        rows = " " * self.x + ("#" * self.width) + "\n"
-        rect = "\n" * self.y + rows * self.height
-        print(rect.rstrip())
+        """Print a visual representation of a rectangle."""
+        y_offset = "\n" * self.y
+        x_offset = " " * self.x
+        row = x_offset + ("#" * self.width) + "\n"
+        full_rec = y_offset + (row * self.height)
+        print(full_rec.rstrip())
 
     def __str__(self) -> str:
-        """Return details of rectangle instance"""
+        """Return details of rectangle instance."""
         return f"[Rectangle] ({self.id}) {self.x}/{self.y} - {self.width}/{self.height}"
 
     def update(self, *args, **kwargs):
-        """Updates attributes of an instance with values from a tuple"""
+        """Updates attributes of an instance with values from a tuple."""
 
         attributes = ("id", "width", "height", "x", "y")
         if args and len(args):
@@ -99,22 +101,9 @@ class Rectangle(Base):
                 setattr(self, attr, new_val)
 
     def to_dictionary(self) -> dict[str, int]:
-        """Return the dictionary representation of a Rectangle instance"""
+        """Return the dictionary representation of a Rectangle instance."""
         inst_dict = dict()
         for attribute in ("x", "y", "id", "height", "width"):
             inst_dict[attribute] = getattr(self, attribute)
 
         return inst_dict
-
-
-if __name__ == "__main__":
-    r = Rectangle(5, 3, 3, 3)
-    r.display()
-    print(r)
-    r.update(id=789, x=1, height=4, y=5, width=7)
-    print(r)
-    r.update(5, 3, 3, 3)
-    print(r)
-    r_dict = r.to_dictionary()
-    print(r_dict)
-    print(type(r_dict))
