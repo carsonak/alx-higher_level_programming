@@ -2,6 +2,7 @@
 """Module for test_rectangle."""
 
 from models.rectangle import Rectangle
+from models.base import Base
 from io import StringIO
 from unittest import TestCase
 from unittest import mock
@@ -16,9 +17,12 @@ class RectangleTest(TestCase):
         self.r1 = Rectangle(3, 5)
         self.r2 = Rectangle(4, 6, 4, 2)
         self.r7800 = Rectangle(7, 8, id=7800)
-        self.r3 = Rectangle(2, 2, 7, id=3)
+        self.r3 = Rectangle(2, 2, 7)
 
-    def test_rectangle_1st_intiialsation(self):
+    def tearDown(self) -> None:
+        setattr(Base, "_Base__nb_objects", 0)
+
+    def test_rectangle_intiialsation(self):
         """Testing instance attributes have initialised properly."""
 
         self.assertEqual((self.r1.width, self.r1.height, self.r1.x, self.r1.y,
@@ -46,8 +50,8 @@ class RectangleTest(TestCase):
     def test_rectangle_str(self):
         """Testing the __str__() magic method."""
 
-        self.assertEqual(str(self.r1), f"[Rectangle] ({self.r1.id}) 0/0 - 3/5")
-        self.assertEqual(str(self.r2), f"[Rectangle] ({self.r2.id}) 4/2 - 4/6")
+        self.assertEqual(str(self.r1), "[Rectangle] (1) 0/0 - 3/5")
+        self.assertEqual(str(self.r2), "[Rectangle] (2) 4/2 - 4/6")
         self.assertEqual(str(self.r7800), "[Rectangle] (7800) 0/0 - 7/8")
         with mock.patch('sys.stdout', new=StringIO()) as mock_stdout:
             print(self.r3)
