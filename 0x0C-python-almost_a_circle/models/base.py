@@ -26,4 +26,4 @@ class Base:
         self.__id = val
 
     def to_json_string(list_dictionaries):
-        """"""
+        """Return the JSON string representation of list_dictionaries"""
