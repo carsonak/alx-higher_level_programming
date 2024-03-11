@@ -48,24 +48,30 @@ class Base:
         from models.rectangle import Rectangle
         from models.square import Square
         filename = None
-        if type(list_objs) is list:
+        if type(list_objs) is list and len(list_objs):
             if all(type(obj) is Rectangle for obj in list_objs):
                 filename = "./Rectangle.json"
             elif all(type(obj) is Square for obj in list_objs):
                 filename = "./Square.json"
 
-        if list_objs is None:
-            filename = "./Rectangle.json"
+        if list_objs is None or (type(list_objs) is list and
+                                 not len(list_objs)):
+            filename = ""
             list_objs = []
 
         if filename is None:
             raise TypeError(
                 "list_objs must be a list of Rectangle or Square objects")
 
-        list_of_dicts = []
-        with open(filename, "w", encoding="UTF-8") as file:
-            list_of_dicts = [obj.to_dictionary() for obj in list_objs]
-            file.write(cls.to_json_string(list_of_dicts))
+        if filename == "" or filename == "./Rectangle.json":
+            with open("./Rectangle.json", "w", encoding="UTF-8") as file:
+                list_of_dicts = [obj.to_dictionary() for obj in list_objs]
+                file.write(cls.to_json_string(list_of_dicts))
+
+        if filename == "" or filename == "./Square.json":
+            with open("./Square.json", "w", encoding="UTF-8") as file:
+                list_of_dicts = [obj.to_dictionary() for obj in list_objs]
+                file.write(cls.to_json_string(list_of_dicts))
 
 
 if __name__ == "__main__":

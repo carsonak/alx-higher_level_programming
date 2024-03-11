@@ -112,16 +112,24 @@ class BaseTest(TestCase):
         with mock.patch("models.base.open", new=mock.mock_open()) as fake_open:
             excepted_out = '[]'
             Base.save_to_file([])
-            fake_open.assert_called_once_with(
-                "./Rectangle.json", "w", encoding='UTF-8')
-            fake_open().write.assert_called_once_with(excepted_out)
+            fake_open.assert_has_calls([
+                mock.call("./Square.json", "w", encoding='UTF-8'),
+                mock.call("./Rectangle.json", "w", encoding='UTF-8')],
+                any_order=True)
+            fake_open().write.assert_has_calls([
+                mock.call(excepted_out), mock.call(excepted_out)],
+                any_order=True)
 
         with mock.patch("models.base.open", new=mock.mock_open()) as fake_open:
             excepted_out = '[]'
             Base.save_to_file(None)
-            fake_open.assert_called_once_with(
-                "./Rectangle.json", "w", encoding='UTF-8')
-            fake_open().write.assert_called_once_with(excepted_out)
+            fake_open.assert_has_calls([
+                mock.call("./Square.json", "w", encoding='UTF-8'),
+                mock.call("./Rectangle.json", "w", encoding='UTF-8')],
+                any_order=True)
+            fake_open().write.assert_has_calls([
+                mock.call(excepted_out), mock.call(excepted_out)],
+                any_order=True)
 
     def test_base_save_to_file_exceptions(self):
         """Test save_to_file exceptions."""
