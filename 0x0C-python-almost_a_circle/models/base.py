@@ -50,12 +50,12 @@ class Base:
         filename = None
         if type(list_objs) is list:
             if all(type(obj) is Rectangle for obj in list_objs):
-                filename = "./Rectangle.py"
+                filename = "./Rectangle.json"
             elif all(type(obj) is Square for obj in list_objs):
-                filename = "./Square.py"
+                filename = "./Square.json"
 
         if list_objs is None:
-            filename = "./Rectangle.py"
+            filename = "./Rectangle.json"
             list_objs = []
 
         if filename is None:

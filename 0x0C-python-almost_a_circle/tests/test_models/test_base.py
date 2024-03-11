@@ -93,7 +93,7 @@ class BaseTest(TestCase):
             # We can assert that our fake_open() was called once with a
             #   specific set of parameters
             fake_open.assert_called_once_with(
-                "Rectangle.py", "w", encoding='UTF-8')
+                "./Rectangle.json", "w", encoding='UTF-8')
             # Calling our fake_open() will yield a new Mock object
             # which has an attribute called write that we can conveniently
             # assert
@@ -106,21 +106,21 @@ class BaseTest(TestCase):
 {"id": 70, "size": 7, "x": 1, "y": 0}]'
             Base.save_to_file([self.s1, self.s2, self.s70])
             fake_open.assert_called_once_with(
-                "Square.py", "w", encoding='UTF-8')
+                "./Square.json", "w", encoding='UTF-8')
             fake_open().write.assert_called_once_with(excepted_out)
 
         with mock.patch("models.base.open", new=mock.mock_open()) as fake_open:
             excepted_out = '[]'
             Base.save_to_file([])
             fake_open.assert_called_once_with(
-                "Rectangle.py", "w", encoding='UTF-8')
+                "./Rectangle.json", "w", encoding='UTF-8')
             fake_open().write.assert_called_once_with(excepted_out)
 
         with mock.patch("models.base.open", new=mock.mock_open()) as fake_open:
             excepted_out = '[]'
             Base.save_to_file(None)
             fake_open.assert_called_once_with(
-                "Rectangle.py", "w", encoding='UTF-8')
+                "./Rectangle.json", "w", encoding='UTF-8')
             fake_open().write.assert_called_once_with(excepted_out)
 
     def test_base_save_to_file_exceptions(self):
