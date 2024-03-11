@@ -85,7 +85,8 @@ class BaseTest(TestCase):
         # function
         # https://docs.python.org/3/library/unittest.mock.html#patch
         with mock.patch("models.base.open", new=mock.mock_open()) as fake_open:
-            excepted_out = '[{"x": 0, "y": 0, "id": 1, "height": 5, "width": 3}, \
+            excepted_out = \
+                '[{"x": 0, "y": 0, "id": 1, "height": 5, "width": 3}, \
 {"x": 4, "y": 2, "id": 2, "height": 6, "width": 4}, \
 {"x": 0, "y": 0, "id": 7800, "height": 8, "width": 7}]'
             Base.save_to_file([self.r1, self.r2, self.r7800])
@@ -99,7 +100,7 @@ class BaseTest(TestCase):
             # https://docs.python.org/3/library/unittest.mock.html#calling
             fake_open().write.assert_called_once_with(excepted_out)
 
-        with mock.patch("models.base.open", new=mock.mock_open(read_data="abc\n")) as fake_open:
+        with mock.patch("models.base.open", new=mock.mock_open()) as fake_open:
             excepted_out = '[{"id": 1, "size": 3, "x": 0, "y": 0}, \
 {"id": 2, "size": 4, "x": 2, "y": 3}, \
 {"id": 70, "size": 7, "x": 1, "y": 0}]'
