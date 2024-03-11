@@ -73,6 +73,11 @@ class RectangleTest(TestCase):
 
     def test_rectangle_update(self):
         """Testing the update() method."""
+        self.r1.update()
+        self.assertEqual((self.r1.id, self.r1.width, self.r1.height,
+                         self.r1.x, self.r1.y), (1, 3, 5, 0, 0),
+                         "Assert r1")
+
         self.r1.update(99, 99, 99, 99, 99, 99, 99, 99, 99)
         self.assertEqual((self.r1.id, self.r1.width, self.r1.height,
                          self.r1.x, self.r1.y), (99, 99, 99, 99, 99),
@@ -102,57 +107,188 @@ class RectangleTest(TestCase):
                          self.r1.x, self.r1.y), (1, 2, 3, 4, 5),
                          "Assert r1")
 
-    def test_rectangle_update_exceptions(self):
-        """Testing the update() method exceptions."""
-        with self.assertRaises(TypeError, msg="Wrong id type"):
-            self.r1.update([1, 2, 3])
-
-        with self.assertRaises(TypeError, msg="Wrong x type"):
-            self.r1.update(x=8.0)
-
-        with self.assertRaises(TypeError, msg="Wrong height type"):
-            self.r1.update(1, 2, "3", 4, 5)
-
-        with self.assertRaises(TypeError, msg="Wrong id type"):
-            self.r1.update({"id": 77, "x": 3})
-
-        with self.assertRaises(ValueError, msg="less than 1 height value"):
-            self.r1.update(1, 2, 0, 4, 5)
-
-        with self.assertRaises(ValueError, msg="less than 1 width value"):
-            self.r1.update(width=-6)
-
-        with self.assertRaises(ValueError, msg="less than 1 y value"):
-            self.r1.update(1, 2, 3, 4, -1)
-
-        with self.assertRaises(ValueError, msg="less than 1 x value"):
-            self.r1.update(x=-6)
-
-    def test_rectangle_intialisation_exceptions(self):
+    def test_rectangle_update_ValueError(self):
         """Testing initialisation exceptions."""
+        with self.assertRaises(ValueError, msg="width and height < 1"):
+            self.r1.update(1, -4, 0)
+
+        with self.assertRaises(ValueError, msg="height < 1"):
+            self.r1.update(1, 4, 0)
+
+        with self.assertRaises(ValueError, msg="x and y < 0"):
+            self.r1.update(1, 4, 5, -1, -5)
+
+        with self.assertRaises(ValueError, msg="y < 0"):
+            self.r1.update(1, 4, 5, -1, -5)
+
+        with self.assertRaises(ValueError, msg="width < 1 kwarg"):
+            self.r1.update(width=0)
+
+        with self.assertRaises(ValueError, msg="height < 1 kwarg"):
+            self.r1.update(height=-7)
+
+        with self.assertRaises(ValueError, msg="x <  kwarg"):
+            self.r1.update(x=-4)
+
+        with self.assertRaises(ValueError, msg="y <  kwarg"):
+            self.r1.update(y=-4)
+
+    def test_rectangle_update_TypeError(self):
+        """Testing the update() method exceptions."""
+        args_dict = {0: "width", 1: "height", 2: "x", 3: "y", 4: "id"}
+        args_list = [1, 2, 3, 4, 5]
+        for i in range(len(args_list)):
+            cpy = args_list[:]
+            cpy[i] = "99"
+            with self.subTest(arg=args_dict[i]):
+                with self.assertRaises(TypeError, msg="string arg"):
+                    self.r1.update(cpy[0], cpy[1], cpy[2], cpy[3], cpy[4])
+
+        for i in range(len(args_list)):
+            cpy = args_list[:]
+            cpy[i] = (99, )
+            with self.subTest(arg=args_dict[i]):
+                with self.assertRaises(TypeError, msg="tuple arg"):
+                    self.r1.update(cpy[0], cpy[1], cpy[2], cpy[3], cpy[4])
+
+        for i in range(len(args_list)):
+            cpy = args_list[:]
+            cpy[i] = [99]
+            with self.subTest(arg=args_dict[i]):
+                with self.assertRaises(TypeError, msg="list arg"):
+                    self.r1.update(cpy[0], cpy[1], cpy[2], cpy[3], cpy[4])
+
+        for i in range(len(args_list)):
+            cpy = args_list[:]
+            cpy[i] = {"ninety-nine": 99}
+            with self.subTest(arg=args_dict[i]):
+                with self.assertRaises(TypeError, msg="dict arg"):
+                    self.r1.update(cpy[0], cpy[1], cpy[2], cpy[3], cpy[4])
+
+        for i in range(len(args_list)):
+            cpy = args_list[:]
+            cpy[i] = 99.99
+            with self.subTest(arg=args_dict[i]):
+                with self.assertRaises(TypeError, msg="float arg"):
+                    self.r1.update(cpy[0], cpy[1], cpy[2], cpy[3], cpy[4])
+
+        for i in range(len(args_list) - 1):
+            cpy = args_list[:]
+            cpy[i] = None
+            with self.subTest(arg=args_dict[i]):
+                with self.assertRaises(TypeError, msg="None arg"):
+                    self.r1.update(cpy[0], cpy[1], cpy[2], cpy[3], cpy[4])
+
+        for i in range(len(args_list)):
+            cpy = args_list[:]
+            cpy[i] = "99"
+            with self.subTest(arg=args_dict[i]):
+                with self.assertRaises(TypeError, msg="string kwarg"):
+                    self.r1.update(width=cpy[0], id=cpy[1], height=cpy[2],
+                                   x=cpy[3], y=cpy[4])
+
+        for i in range(len(args_list)):
+            cpy = args_list[:]
+            cpy[i] = (99, )
+            with self.subTest(arg=args_dict[i]):
+                with self.assertRaises(TypeError, msg="tuple kwarg"):
+                    self.r1.update(width=cpy[0], id=cpy[1], height=cpy[2],
+                                   x=cpy[3], y=cpy[4])
+
+        for i in range(len(args_list)):
+            cpy = args_list[:]
+            cpy[i] = [99]
+            with self.subTest(arg=args_dict[i]):
+                with self.assertRaises(TypeError, msg="list kwarg"):
+                    self.r1.update(width=cpy[0], id=cpy[1], height=cpy[2],
+                                   x=cpy[3], y=cpy[4])
+
+        for i in range(len(args_list)):
+            cpy = args_list[:]
+            cpy[i] = {"ninety-nine": 99}
+            with self.subTest(arg=args_dict[i]):
+                with self.assertRaises(TypeError, msg="dict kwarg"):
+                    self.r1.update(width=cpy[0], id=cpy[1], height=cpy[2],
+                                   x=cpy[3], y=cpy[4])
+
+        for i in range(len(args_list)):
+            cpy = args_list[:]
+            cpy[i] = 99.99
+            with self.subTest(arg=args_dict[i]):
+                with self.assertRaises(TypeError, msg="float kwarg"):
+                    self.r1.update(width=cpy[0], id=cpy[1], height=cpy[2],
+                                   x=cpy[3], y=cpy[4])
+
+        for i in range(len(args_list) - 1):
+            cpy = args_list[:]
+            cpy[i] = None
+            with self.subTest(arg=args_dict[i]):
+                with self.assertRaises(TypeError, msg="None kwarg"):
+                    self.r1.update(width=cpy[0], id=cpy[1], height=cpy[2],
+                                   x=cpy[3], y=cpy[4])
+
+    def test_rectangle_intialisation_ValueError(self):
+        """Testing initialisation exceptions."""
+        with self.assertRaises(ValueError, msg="Width and height < 1"):
+            r1 = Rectangle(0, -4)
+
+        with self.assertRaises(ValueError, msg="height < 1"):
+            r1 = Rectangle(7, -4)
+
+        with self.assertRaises(ValueError, msg="x and y < 0"):
+            r1 = Rectangle(3, 5, -1, -5)
+
+        with self.assertRaises(ValueError, msg="y < 0"):
+            r1 = Rectangle(3, 5, 1, -5)
+
+    def test_rectangle_intialisation_TypeError(self):
+        """Testing initialisation TypeError exceptions."""
         with self.assertRaises(TypeError, msg="No width and height"):
             r1 = Rectangle()
 
         with self.assertRaises(TypeError, msg="No height"):
             r1 = Rectangle(5)
 
-        with self.assertRaises(TypeError, msg="Wrong width and height types"):
-            r1 = Rectangle("1", (2, 2))
+        args_dict = {0: "width", 1: "height", 2: "x", 3: "y", 4: "id"}
+        args_list = [1, 2, 3, 4, 5]
+        for i in range(len(args_list)):
+            cpy = args_list[:]
+            cpy[i] = "99"
+            with self.subTest(arg=args_dict[i]):
+                with self.assertRaises(TypeError, msg="string arg"):
+                    r1 = Rectangle(cpy[0], cpy[1], cpy[2], cpy[3], cpy[4])
 
-        with self.assertRaises(TypeError, msg="Wrong height type"):
-            r1 = Rectangle(1, (2, 2))
+        for i in range(len(args_list)):
+            cpy = args_list[:]
+            cpy[i] = (99, )
+            with self.subTest(arg=args_dict[i]):
+                with self.assertRaises(TypeError, msg="tuple arg"):
+                    r1 = Rectangle(cpy[0], cpy[1], cpy[2], cpy[3], cpy[4])
 
-        with self.assertRaises(ValueError, msg="Width and height < 1"):
-            r1 = Rectangle(0, -4)
+        for i in range(len(args_list)):
+            cpy = args_list[:]
+            cpy[i] = [99]
+            with self.subTest(arg=args_dict[i]):
+                with self.assertRaises(TypeError, msg="list arg"):
+                    r1 = Rectangle(cpy[0], cpy[1], cpy[2], cpy[3], cpy[4])
 
-        with self.assertRaises(ValueError, msg="Height value less than 1"):
-            r1 = Rectangle(7, -4)
+        for i in range(len(args_list)):
+            cpy = args_list[:]
+            cpy[i] = {"ninety-nine": 99}
+            with self.subTest(arg=args_dict[i]):
+                with self.assertRaises(TypeError, msg="dict arg"):
+                    r1 = Rectangle(cpy[0], cpy[1], cpy[2], cpy[3], cpy[4])
 
-        with self.assertRaises(ValueError, msg="x and y values less than 0"):
-            r1 = Rectangle(3, 5, -1, -5)
+        for i in range(len(args_list)):
+            cpy = args_list[:]
+            cpy[i] = 99.99
+            with self.subTest(arg=args_dict[i]):
+                with self.assertRaises(TypeError, msg="float arg"):
+                    r1 = Rectangle(cpy[0], cpy[1], cpy[2], cpy[3], cpy[4])
 
-        with self.assertRaises(ValueError, msg="y value less than 0"):
-            r1 = Rectangle(3, 5, 1, -5)
-
-        with self.assertRaises(TypeError, msg="Wrong id type"):
-            r1 = Rectangle(3, 5, 1, 5, 6.1)
+        for i in range(len(args_list) - 1):
+            cpy = args_list[:]
+            cpy[i] = None
+            with self.subTest(arg=args_dict[i]):
+                with self.assertRaises(TypeError, msg="None arg"):
+                    r1 = Rectangle(cpy[0], cpy[1], cpy[2], cpy[3], cpy[4])
