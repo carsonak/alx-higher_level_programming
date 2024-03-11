@@ -4,8 +4,8 @@
 from models.rectangle import Rectangle
 from models.base import Base
 from io import StringIO
-from unittest import TestCase
-from unittest import mock
+# mock allows to mimic output of functions ands APIs
+from unittest import TestCase, mock
 
 
 class RectangleTest(TestCase):
@@ -49,24 +49,24 @@ class RectangleTest(TestCase):
         self.assertEqual(str(self.r1), "[Rectangle] (1) 0/0 - 3/5")
         self.assertEqual(str(self.r2), "[Rectangle] (2) 4/2 - 4/6")
         self.assertEqual(str(self.r7800), "[Rectangle] (7800) 0/0 - 7/8")
-        with mock.patch('sys.stdout', new=StringIO()) as mock_stdout:
+        with mock.patch('sys.stdout', StringIO()) as mock_stdout:
             print(self.r3)
             self.assertEqual(mock_stdout.getvalue(),
                              "[Rectangle] (3) 7/0 - 2/2\n")
 
     def test_rectangle_display(self):
         """Testing the display() method."""
-        with mock.patch('sys.stdout', new=StringIO()) as mock_stdout:
-            excepted_out: str = "###\n" * 5
+        with mock.patch('sys.stdout', StringIO()) as mock_stdout:
+            excepted_out = "###\n" * 5
             self.r1.display()
             self.assertEqual(mock_stdout.getvalue(), excepted_out)
 
-        with mock.patch('sys.stdout', new=StringIO()) as mock_stdout:
+        with mock.patch('sys.stdout', StringIO()) as mock_stdout:
             excepted_out = "\n\n" + (((" " * 4) + "####\n") * 6)
             self.r2.display()
             self.assertEqual(mock_stdout.getvalue(), excepted_out)
 
-        with mock.patch('sys.stdout', new=StringIO()) as mock_stdout:
+        with mock.patch('sys.stdout', StringIO()) as mock_stdout:
             excepted_out = ((" " * 7) + "##\n") * 2
             self.r3.display()
             self.assertEqual(mock_stdout.getvalue(), excepted_out)
