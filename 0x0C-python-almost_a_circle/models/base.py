@@ -29,7 +29,7 @@ class Base:
 
         self.__id = val
 
-    def to_json_string(list_dictionaries: list[dict]):
+    def to_json_string(list_dictionaries):
         """Return the JSON string representation of list_dictionaries."""
         if type(list_dictionaries) is list and len(list_dictionaries):
             if not all(type(item) is dict for item in list_dictionaries):
