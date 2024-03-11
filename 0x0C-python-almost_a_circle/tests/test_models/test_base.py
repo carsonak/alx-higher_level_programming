@@ -65,7 +65,7 @@ class BaseTest(TestCase):
         return list_o_recs
 
     @staticmethod
-    def sqr_rec_objs_to_dict(*objects: Rectangle | Square, tracker=None):
+    def sqr_rec_objs_to_dict(*objects, tracker=None):
         """Return a list of dictionaries from a list of sqr and rec objects."""
         list_of_dicts = []
         for obj in objects:
