@@ -56,22 +56,31 @@ class Base:
 
         if list_objs is None or (type(list_objs) is list and
                                  not len(list_objs)):
-            filename = ""
+            filename = "both"
             list_objs = []
 
         if filename is None:
             raise TypeError(
                 "list_objs must be a list of Rectangle or Square objects")
 
-        if filename == "" or filename == "./Rectangle.json":
+        if filename == "both" or filename == "./Rectangle.json":
             with open("./Rectangle.json", "w", encoding="UTF-8") as file:
                 list_of_dicts = [obj.to_dictionary() for obj in list_objs]
                 file.write(cls.to_json_string(list_of_dicts))
 
-        if filename == "" or filename == "./Square.json":
+        if filename == "both" or filename == "./Square.json":
             with open("./Square.json", "w", encoding="UTF-8") as file:
                 list_of_dicts = [obj.to_dictionary() for obj in list_objs]
                 file.write(cls.to_json_string(list_of_dicts))
+
+    @staticmethod
+    def from_json_string(json_string):
+        """Return the list of the JSON string representation json_string."""
+
+        if type(json_string) is str and json_string:
+            return json.loads(json_string)
+
+        return []
 
 
 if __name__ == "__main__":

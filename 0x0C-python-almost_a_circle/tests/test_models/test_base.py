@@ -183,6 +183,23 @@ class BaseTest(TestCase):
                          f"to_json_string doesn't correctly serialize \
                             {list_dictionaries}: {rjson}")
 
+    def test_from_json_string(self):
+        """Test from_json_string."""
+
+        list_output = [{"id": 1, "size": 3, "x": 0, "y": 0},
+                       {"id": 2, "size": 4, "x": 2, "y": 3},
+                       {"id": 70, "size": 7, "x": 1, "y": 0}]
+        string_input = '[{"id": 1, "size": 3, "x": 0, "y": 0}, \
+{"id": 2, "size": 4, "x": 2, "y": 3}, \
+{"id": 70, "size": 7, "x": 1, "y": 0}]'
+
+        self.assertEqual(Base.from_json_string(string_input), list_output)
+        self.assertEqual(Base.from_json_string(None), [])
+        self.assertEqual(Base.from_json_string(""), [])
+        self.assertEqual(Base.from_json_string("[]"), [])
+        self.assertEqual(Base.from_json_string("[1, 2, 3]"), [1, 2, 3])
+
+
 
 if __name__ == '__main__':
     unittest.main()
