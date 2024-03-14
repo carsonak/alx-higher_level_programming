@@ -15,7 +15,7 @@ class BaseTest(TestCase):
     """Tests for Base class."""
 
     def setUp(self):
-        """Initialise up Base instances."""
+        """Initialise Base instances."""
         self.b1 = Base()
         self.b2 = Base()
         setattr(Base, "_Base__nb_objects", 0)
@@ -199,6 +199,65 @@ class BaseTest(TestCase):
         self.assertEqual(Base.from_json_string("[]"), [])
         self.assertEqual(Base.from_json_string("[1, 2, 3]"), [1, 2, 3])
 
+    def polygon_test(self, poly, **keys):
+        """Assert all polygon attributes."""
+        polygon_attrs = {"size": 0, "width": 0, "height": 0,
+                         "x": 0, "y": 0, "id": 0}
+        polygon_attrs.update(keys)
+        if polygon_attrs["size"]:
+            polygon_attrs["height"] = polygon_attrs["size"]
+            polygon_attrs["width"] = polygon_attrs["size"]
+
+        for attr, val in polygon_attrs.items():
+            with self.subTest(attr=attr, val=val):
+                self.assertEqual(getattr(poly, attr, 0), val)
+
+    def test_create(self):
+        """Test create static method."""
+        rec_attrs = {"width": 3, "height": 6, "x": 4, "y": 5, "id": 3645}
+        rec = Base.create(**rec_attrs)
+        self.polygon_test(rec, **rec_attrs)
+
+        sqr_attrs = {"size": 7, "x": 1, "y": 2, "id": 712}
+        sqr = Base.create(**sqr_attrs)
+        self.polygon_test(sqr, **sqr_attrs)
+
+        rec_attrs = {"id": 2200}
+        rec = Base.create(**rec_attrs)
+        self.polygon_test(rec, **{"width": 2, "height": 2, "id": 2200})
+
+        sqr_attrs = {"size": 7, "id": 700}
+        sqr = Base.create(**sqr_attrs)
+        self.polygon_test(sqr, **sqr_attrs)
+
+    def test_load_from_file(self):
+        """Test load_from_file."""
+        sqr_list = [{"id": 1, "size": 3, "x": 0, "y": 0},
+                    {"id": 2, "size": 4, "x": 2, "y": 3},
+                    {"id": 70, "size": 7, "x": 1, "y": 0}]
+        rec_list = [{"x": 0, "y": 0, "id": 1, "height": 5, "width": 3},
+                    {"x": 4, "y": 2, "id": 2, "height": 6, "width": 4},
+                    {"x": 0, "y": 0, "id": 7800, "height": 8, "width": 7}]
+
+        with mock.patch("models.base.open",
+                        new=mock.mock_open(read_data=json.dumps(sqr_list))) \
+                as fake_file:
+            sqr_instances = Square.load_from_file()
+            fake_file.assert_called_once_with(
+                "./Square.json", encoding="UTF-8")
+
+        for i, poly in enumerate(sqr_instances):
+            self.polygon_test(poly, **sqr_list[i])
+
+        with mock.patch("models.base.open",
+                        new=mock.mock_open(read_data=json.dumps(rec_list))) \
+                as fake_file:
+            rec_instances = Rectangle.load_from_file()
+            fake_file.assert_called_once_with(
+                "./Rectangle.json", encoding="UTF-8")
+
+        for i, poly in enumerate(rec_instances):
+            self.polygon_test(poly, **rec_list[i])
 
 
 if __name__ == '__main__':

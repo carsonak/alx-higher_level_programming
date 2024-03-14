@@ -76,12 +76,38 @@ class Base:
     @staticmethod
     def from_json_string(json_string):
         """Return the list of the JSON string representation json_string."""
-
         if type(json_string) is str and json_string:
             return json.loads(json_string)
 
         return []
 
+    @classmethod
+    def create(cls, **dictionary):
+        """Create a new instance of subclass with attributes already set."""
+        from models.rectangle import Rectangle
+        from models.square import Square
 
-if __name__ == "__main__":
-    Base.save_to_file(None)
+        if "size" in dictionary or type(cls) is Square:
+            dummy = Square(2)
+        else:
+            dummy = Rectangle(2, 2)
+
+        dummy.update(**{k: v for k, v in dictionary.items()})
+        return dummy
+
+    @classmethod
+    def load_from_file(cls):
+        """Return a list of instances loaded from a json file."""
+        from models.square import Square
+
+        filename = "./Rectangle.json"
+        if cls is Square:
+            filename = "./Square.json"
+
+        try:
+            with open(filename, encoding="UTF-8") as file:
+                list_dictionaries = Base.from_json_string(file.readline())
+        except FileNotFoundError:
+            list_dictionaries = []
+
+        return [Base.create(**d) for d in list_dictionaries]
