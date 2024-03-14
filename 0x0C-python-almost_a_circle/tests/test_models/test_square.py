@@ -214,21 +214,21 @@ class RectangleTest(TestCase):
     def test_rectangle_intialisation_ValueError(self):
         """Testing initialisation exceptions."""
         with self.assertRaises(ValueError, msg="size < 1"):
-            r1 = Square(-4)
+            Square(-4)
 
         with self.assertRaises(ValueError, msg="size == 0"):
-            r1 = Square(0)
+            Square(0)
 
         with self.assertRaises(ValueError, msg="x and y < 0"):
-            r1 = Square(4, -5, -1, 1)
+            Square(4, -5, -1, 1)
 
         with self.assertRaises(ValueError, msg="y < 0"):
-            r1 = Square(4, 5, -1, 1)
+            Square(4, 5, -1, 1)
 
     def test_rectangle_intialisation_TypeError(self):
         """Testing initialisation TypeError exceptions."""
         with self.assertRaises(TypeError, msg="No size"):
-            r1 = Square()
+            Square()
 
         args_dict = {0: "size", 1: "x", 2: "y", 3: "id"}
         args_list = [2, 3, 4, 1]
@@ -237,39 +237,39 @@ class RectangleTest(TestCase):
             cpy[i] = "99"
             with self.subTest(arg=args_dict[i]):
                 with self.assertRaises(TypeError, msg="string arg"):
-                    r1 = Square(cpy[0], cpy[1], cpy[2], cpy[3])
+                    Square(cpy[0], cpy[1], cpy[2], cpy[3])
 
         for i in range(len(args_list)):
             cpy = args_list[:]
             cpy[i] = (99, )
             with self.subTest(arg=args_dict[i]):
                 with self.assertRaises(TypeError, msg="tuple arg"):
-                    r1 = Square(cpy[0], cpy[1], cpy[2], cpy[3])
+                    Square(cpy[0], cpy[1], cpy[2], cpy[3])
 
         for i in range(len(args_list)):
             cpy = args_list[:]
             cpy[i] = [99]
             with self.subTest(arg=args_dict[i]):
                 with self.assertRaises(TypeError, msg="list arg"):
-                    r1 = Square(cpy[0], cpy[1], cpy[2], cpy[3])
+                    Square(cpy[0], cpy[1], cpy[2], cpy[3])
 
         for i in range(len(args_list)):
             cpy = args_list[:]
             cpy[i] = {"ninety-nine": 99}
             with self.subTest(arg=args_dict[i]):
                 with self.assertRaises(TypeError, msg="dict arg"):
-                    r1 = Square(cpy[0], cpy[1], cpy[2], cpy[3])
+                    Square(cpy[0], cpy[1], cpy[2], cpy[3])
 
         for i in range(len(args_list)):
             cpy = args_list[:]
             cpy[i] = 99.99
             with self.subTest(arg=args_dict[i]):
                 with self.assertRaises(TypeError, msg="float arg"):
-                    r1 = Square(cpy[0], cpy[1], cpy[2], cpy[3])
+                    Square(cpy[0], cpy[1], cpy[2], cpy[3])
 
         for i in range(len(args_list) - 1):
             cpy = args_list[:]
             cpy[i] = None
             with self.subTest(arg=args_dict[i]):
                 with self.assertRaises(TypeError, msg="None arg"):
-                    r1 = Square(cpy[0], cpy[1], cpy[2], cpy[3])
+                    Square(cpy[0], cpy[1], cpy[2], cpy[3])

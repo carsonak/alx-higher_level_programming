@@ -185,7 +185,6 @@ class BaseTest(TestCase):
 
     def test_from_json_string(self):
         """Test from_json_string."""
-
         list_output = [{"id": 1, "size": 3, "x": 0, "y": 0},
                        {"id": 2, "size": 4, "x": 2, "y": 3},
                        {"id": 70, "size": 7, "x": 1, "y": 0}]
