@@ -8,7 +8,7 @@ if (nums.length > 1) {
       secondBiggest = biggest;
       biggest = n;
     }
-    if (secondBiggest < n && n < biggest) {
+    if ((secondBiggest >= biggest || secondBiggest < n) && n < biggest) {
       secondBiggest = n;
     }
   });
