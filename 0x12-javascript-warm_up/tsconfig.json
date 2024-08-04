@@ -2,7 +2,9 @@
   "include": [
     "src"
   ],
-  "exclude": [],
+  "exclude": [
+    "src/100-let_me_const.ts"
+  ],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
     /* Projects */
