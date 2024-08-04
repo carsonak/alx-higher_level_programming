@@ -1,6 +1,18 @@
-#gitignore test files and pycache
+# VS Code configs
 .vscode
-*main.py
+
+# Pyhon cache files
 __pycache__
+*mypy*
+
+# Test files
+*main.py
 *main.c
+*main.js
 linked_lists.c
+
+# Typescript files
+*.ts
+
+# Node Modules
+node_modules
