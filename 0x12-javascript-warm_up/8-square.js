@@ -1,6 +1,7 @@
 #!/usr/bin/node
 const size = parseInt(process.argv[2]);
 if (!size || size < 0) {
+  console.log('Missing size');
   process.exit();
 }
 let filler = '';

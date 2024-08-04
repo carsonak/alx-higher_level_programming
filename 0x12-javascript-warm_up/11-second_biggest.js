@@ -5,6 +5,7 @@ let secondBiggest = biggest;
 if (nums.length > 1) {
   nums.forEach((n) => {
     if (n > biggest) {
+      secondBiggest = biggest;
       biggest = n;
     }
     if (secondBiggest < n && n < biggest) {
